@@ -1,3 +1,6 @@
+//<RobZ> This file (wm_strings_en.h ) have been slightly edited by me to change some text in the captive portal.
+// Replace the  wm_strings_en.h in Arduino/libraries/WiFiManager to get my settings.
+// This file contain settings for HTML style, reply strings and more </RobZ>
 /**
  * wm_strings_en.h
  * english strings for
