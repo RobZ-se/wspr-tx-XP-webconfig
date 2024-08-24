@@ -1,5 +1,4 @@
 Use the ZachTek WSPR-TX Xp transmitter without an GPS antenna. 
-connects to a Timeserver via NTP.
 
 This version adds software for WiFi connection and a NTP client so that the unit can operate without GPS.
 WiFi is setup via a captive webb portal (eg this unit will start as an Access point. (named WSPT-TX-XP)
