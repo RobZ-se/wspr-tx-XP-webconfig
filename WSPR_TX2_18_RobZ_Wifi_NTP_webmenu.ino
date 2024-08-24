@@ -110,6 +110,14 @@
   //Harry
 */
 
+/*
+This version adds WiFi and a NTP client so that the unit can operate without GPS.
+Initial WiFi setting is setup via a Captive webb portal (eg this unit will start as an Access point. (named WSPT-TX-XP)
+After connection to portal, the user can enter the name and password for their own home WiFi network, and then the WSPR-TX Xp will reboot and connect to that WiFi
+The WiFi setting is persistent. 
+To cleear WiFi settings, send the (new) command [CCW] S (Command Clear WiFi Setting)
+//Robert
+*/
 
 
 const uint8_t SoftwareVersion = 2;    //0 to 255. 0=Beta
@@ -653,11 +661,7 @@ void setup() {
 
   // ..........................  RobZ  ...........................
   WiFi_init();
-
   if (WiFi.status() == WL_CONNECTED) {
-    Serial.println("WiFi connected!");
-    Serial.print("IP address: ");
-    Serial.println(WiFi.localIP());
     Serial.println("Now connecting to Timeserver ");
     iniNTP();
   }
@@ -809,6 +813,15 @@ void DecodeSerialCMD(const char *InputCMD) {
           Serial.println(F("{MIN} Configuration saved"));
         }
       }  //[CSE]
+
+// ------------------------- RobZ -----------------------------------------
+      //NEW COMMAND - Clear WiFi settings and restart [CCW]
+      if ((InputCMD[2] == 'C') && (InputCMD[3] == 'W')) {
+        if (InputCMD[6] == 'S') {  //Set option
+          resetWiFi();
+        }
+      }  //[CCW]
+//---------------------------- End RobZ ----------------------------------------
 
       //Set Low Pass filter. LP filters are automatically set by the WSPR Beacon and Signal Gen. routines
       //but can be temporarily overrided by this command for testing purposes [CSL]
@@ -1559,7 +1572,6 @@ void DoWSPR() {
             SendAPIUpdate(UMesNoGPSLock);  //Send No lock status
             // .................. RobZ ......................
             //smartdelay(400);
-            //web_check();
             if (timeClient.isTimeSet()) {
               noGPS_WSPR_Tx(WSPRMessageTypeToUse);
             } else smartdelay(400);
@@ -2314,7 +2326,7 @@ void SendAPIUpdate(uint8_t UpdateType) {
         GPSH = fix.dateTime.hours;
         GPSM = fix.dateTime.minutes;
         GPSS = fix.dateTime.seconds;
-      } else if (timeClient.isTimeSet()) {  // Set time from NTP data
+      } else if (timeClient.isTimeSet()) {  // If no GPS, set time from NTP data
         GPSH = timeClient.getHours();
         GPSM = timeClient.getMinutes();
         GPSS = timeClient.getSeconds();
