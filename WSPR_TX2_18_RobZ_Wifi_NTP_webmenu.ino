@@ -133,7 +133,7 @@ const uint8_t SoftwareRevision = 18;  //0 to 255
 // Product model. WSPR-TX Pico                            =1028
 // Product model. WSPR-TX XP Plus                         =1048
 
-const uint16_t Product_Model = 1011;
+const uint16_t Product_Model = 1048;
 
 #include <ESP8266WiFi.h>
 #include <EEPROM.h>
