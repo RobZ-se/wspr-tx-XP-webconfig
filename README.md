@@ -1,4 +1,4 @@
-Use the ZachTek WSPR-TX Xp transmitter without an GPS antenna. 
+Use the ZachTek WSPR-TX XP transmitter without an GPS antenna. 
 
 This version adds software for WiFi connection and a NTP client so that the unit can operate without GPS.
 WiFi is setup via a captive webb portal. 
