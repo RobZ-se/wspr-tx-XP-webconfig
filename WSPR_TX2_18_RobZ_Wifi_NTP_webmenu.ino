@@ -116,6 +116,9 @@ Initial WiFi setting is setup via a Captive webb portal (eg this unit will start
 After connection to portal, the user can enter the name and password for their own home WiFi network, and then the WSPR-TX Xp will reboot and connect to that WiFi
 The WiFi setting is persistent. 
 To cleear WiFi settings, send the (new) command [CCW] S (Command Clear WiFi Setting)
+Install library "WiFiManager.h" by tzapu // https://github.com/tzapu/WiFiManager
+replace  Arduino\libraries\WiFiManager\wm_strings_en.h with the supplied version
+
 //Robert
 */
 
