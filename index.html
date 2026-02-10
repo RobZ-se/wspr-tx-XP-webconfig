@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESP32 WSPR Transmitter Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>ESP32 WSPR Transmitter Dashboard</h1>
+        <section class="wifi-setup">
+            <h2>WiFi Setup</h2>
+            <form id="wifi-form">
+                <label for="ssid">SSID:</label>
+                <input type="text" id="ssid" name="ssid" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit">Connect</button>
+            </form>
+        </section>
+        <section class="wspr-parameters">
+            <h2>WSPR Parameters</h2>
+            <form id="wspr-form">
+                <label for="frequency">Frequency (Hz):</label>
+                <input type="number" id="frequency" name="frequency" required>
+                <label for="locator">Locator:</label>
+                <input type="text" id="locator" name="locator" required>
+                <label for="power">Power (dBm):</label>
+                <input type="number" id="power" name="power" required>
+                <button type="submit">Update</button>
+            </form>
+        </section>
+        <section class="status">
+            <h2>Status</h2>
+            <div id="status-updates">
+                <p>Waiting for updates...</p>
+                <div id="live-status"></div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
